@@ -22,11 +22,13 @@ import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import Login from "./features/auth/pages/Login";
 import Register from "./features/auth/pages/Register";
+import Feed from "./features/posts/pages/Feed";
+import CreatePost from "./features/posts/pages/CreatePost";
 
 const AppRouter = createBrowserRouter([
   {
     path: "/",
-    element: <h1>Welcome to the App</h1>,
+    element: <Feed />,
   },
   {
     path: "/login",
@@ -35,6 +37,10 @@ const AppRouter = createBrowserRouter([
   {
     path: "/register",
     element: <Register />,
+  },
+  {
+    path: "/create-post",
+    element: <CreatePost />,
   },
 ]);
 

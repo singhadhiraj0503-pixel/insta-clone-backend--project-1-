@@ -24,6 +24,7 @@ import Login from "./features/auth/pages/Login";
 import Register from "./features/auth/pages/Register";
 import Feed from "./features/posts/pages/Feed";
 import CreatePost from "./features/posts/pages/CreatePost";
+import ProfilePage from "./features/profile/pages/ProfilePage";
 
 const AppRouter = createBrowserRouter([
   {
@@ -41,6 +42,14 @@ const AppRouter = createBrowserRouter([
   {
     path: "/create-post",
     element: <CreatePost />,
+  },
+  {
+    path: "/profile",
+    element: <ProfilePage />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
   },
 ]);
 

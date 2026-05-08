@@ -34,4 +34,22 @@ userRouter.post(
   userController.rejectFollowRequestController,
 );
 
+userRouter.get(
+  "/profile/:username",
+  identifyUser,
+  userController.getProfileCOntroller,
+);
+
+userRouter.get(
+  "/followers/:username",
+  identifyUser,
+  userController.getFollowerController,
+);
+
+userRouter.get(
+  "/following/:username",
+  identifyUser,
+  userController.getFollowingController,
+);
+
 module.exports = userRouter;

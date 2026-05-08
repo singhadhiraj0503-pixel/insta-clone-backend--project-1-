@@ -3,9 +3,11 @@ import React, { useEffect } from "react";
 import Post from "../components/Post";
 import { usePost } from "../hooks/usePost";
 import Navbar from "../components/Navbar";
+import { useNavigate } from "react-router-dom";
 
 const Feed = () => {
   const { feed, handleGetFeed, loading, handleLike, handleUnlike } = usePost();
+  const navigate = useNavigate();
 
   useEffect(() => {
     handleGetFeed();
@@ -37,6 +39,22 @@ const Feed = () => {
           })}
         </div>
       </div>
+      <button
+        onClick={() => {
+          navigate("/profile");
+        }}
+        className="px-4 py-2 rounded bg-red-600 text-white font-bold text-3xl active:scale-95 cursor-pointer"
+      >
+        Profile
+      </button>
+      <button
+        onClick={() => {
+          navigate("/login");
+        }}
+        className="px-4 py-2 rounded bg-pink-500 text-white font-bold text-xl active:scale-95 cursor-pointer mt-3"
+      >
+        Logout
+      </button>
     </div>
   );
 };

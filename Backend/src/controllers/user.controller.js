@@ -153,10 +153,76 @@ const unfollowUserController = async (req, res) => {
   });
 };
 
+const getProfileCOntroller = async (req, res) => {
+  const username = req.params.username;
+
+  const user = await userModel.findOne({
+    username,
+  });
+
+  if (!user) {
+    return res.status(404).json({
+      message: "User not found",
+    });
+  }
+
+  res.status(200).json({
+    message: "Profile Fetched Successfully",
+    user: {
+      profileImage: user.profileImage,
+      username: user.username,
+      bio: user.bio,
+    },
+  });
+};
+
+const getFollowerController = async (req, res) => {
+  const username = req.params.username;
+
+  const followers = await followModel.find({
+    followee: username,
+    status: "accepted",
+  });
+
+  if (!followers) {
+    return res.status(401).json({
+      message: "0 Followers",
+    });
+  }
+
+  res.status(200).json({
+    message: "Followers fetched Successfully",
+    followers,
+  });
+};
+
+const getFollowingController = async (req, res) => {
+  const username = req.params.username;
+
+  const following = await followModel.find({
+    follower: username,
+    status: "accepted",
+  });
+
+  if (!following) {
+    return res.status(401).json({
+      message: "0 Following",
+    });
+  }
+
+  res.status(200).json({
+    message: "Following fetched Successfully",
+    following,
+  });
+};
+
 module.exports = {
   followUserController,
   unfollowUserController,
   acceptFollowRequestController,
   rejectFollowRequestController,
   listPendingFollowRequestsController,
+  getProfileCOntroller,
+  getFollowerController,
+  getFollowingController,
 };
